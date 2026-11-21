@@ -1,20 +1,21 @@
 {
-  "dataset_name": "Yelp Reviews Full (3-class)",
-  "train_samples": 36000,
-  "test_samples": 6000,
+  "dataset_name": "Yelp Reviews Strict (1\u2605/3\u2605/5\u2605 only)",
+  "train_samples": 45000,
+  "test_samples": 7500,
+  "strategy": "1-star=Negative, 3-star=Neutral, 5-star=Positive (strict boundaries)",
   "classes": {
     "0": "Negative",
     "1": "Neutral",
     "2": "Positive"
   },
   "train_distribution": {
-    "Neutral": 12000,
-    "Positive": 12000,
-    "Negative": 12000
+    "Positive": 15000,
+    "Negative": 15000,
+    "Neutral": 15000
   },
   "test_distribution": {
-    "Negative": 2000,
-    "Neutral": 2000,
-    "Positive": 2000
+    "Negative": 2500,
+    "Positive": 2500,
+    "Neutral": 2500
   }
 }

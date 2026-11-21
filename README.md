@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.10-blue)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-3.x-green)](https://flask.palletsprojects.com)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.x-orange)](https://scikit-learn.org)
-[![Accuracy](https://img.shields.io/badge/Accuracy-74.8%25-brightgreen)](/)
+[![Accuracy](https://img.shields.io/badge/Accuracy-87.0%25-brightgreen)](/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 ## 🎯 Overview
@@ -13,7 +13,7 @@
 **Problem Statement:** Analyze the emotional tone in natural language text to determine sentiment — positive, negative, or neutral — from user-generated content such as reviews, comments, or social media posts.
 
 ### ✨ Key Features
-- 🚀 **74.8% Test Accuracy** on Yelp Reviews 3-class dataset
+- 🚀 **87.0% Test Accuracy** on Yelp Reviews 3-class dataset
 - 🧠 Advanced TF-IDF (word + character n-grams) feature extraction
 - 📊 Multi-model experiment framework (LR, SVM, NB, Ensemble)
 - 🔍 Per-prediction feature importance explanation
@@ -28,17 +28,17 @@
 
 | Metric | Score |
 |--------|-------|
-| **Test Accuracy** | **74.80%** |
-| **Macro F1** | **0.7484** |
-| **Negative F1** | 0.7883 |
-| **Neutral F1** | 0.6529 |
-| **Positive F1** | 0.8040 |
+| **Test Accuracy** | **86.96%** |
+| **Macro F1** | **0.8693** |
+| **Negative F1** | 0.9009 |
+| **Neutral F1** | 0.8212 |
+| **Positive F1** | 0.8859 |
 
 ### Dataset: Yelp Reviews Full (3-class)
 | Split | Samples | Balance |
 |-------|---------|---------|
-| Training | 36,000 | Perfectly balanced (1/3 each) |
-| Testing | 6,000 | Perfectly balanced (1/3 each) |
+| Training | 45,000 | Perfectly balanced (1/3 each) |
+| Testing | 7,500 | Perfectly balanced (1/3 each) |
 
 **Label Mapping:**
 - 1–2 ★ → **Negative** (0)
