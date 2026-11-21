@@ -1,0 +1,29 @@
+{
+  "model_name": "Combined TF-IDF + LR",
+  "model_file": "C:\\Users\\mokak\\.gemini\\antigravity\\scratch\\SentimentIQ\\SentimentIQ-Flask-main\\models\\sentiment_model.pkl",
+  "trained_at": "2026-11-21T09:29:15.631048",
+  "n_train": 8544,
+  "n_test": 2210,
+  "accuracy": 0.6131,
+  "macro_f1": 0.5462,
+  "per_class": {
+    "Negative": {
+      "precision": 0.7031,
+      "recall": 0.6414,
+      "f1": 0.6709
+    },
+    "Neutral": {
+      "precision": 0.2311,
+      "recall": 0.2596,
+      "f1": 0.2446
+    },
+    "Positive": {
+      "precision": 0.7109,
+      "recall": 0.736,
+      "f1": 0.7232
+    }
+  },
+  "version": "2.0",
+  "dataset": "SST-5 (3-class)",
+  "preprocessing": "v2.0 (negation-aware + intensifier-preserving)"
+}

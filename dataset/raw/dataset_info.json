@@ -1,0 +1,20 @@
+{
+  "dataset_name": "Yelp Reviews Full (3-class)",
+  "train_samples": 36000,
+  "test_samples": 6000,
+  "classes": {
+    "0": "Negative",
+    "1": "Neutral",
+    "2": "Positive"
+  },
+  "train_distribution": {
+    "Neutral": 12000,
+    "Positive": 12000,
+    "Negative": 12000
+  },
+  "test_distribution": {
+    "Negative": 2000,
+    "Neutral": 2000,
+    "Positive": 2000
+  }
+}

@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block header_title %}📊 Dashboard{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Welcome to SentimentIQ</h1>
+  <p>Enterprise-grade 3-class sentiment intelligence platform powered by advanced NLP</p>
+</div>
+
+{% if not model_ready %}
+<div class="alert alert-warning">
+  ⚠️ No trained model found. Run <code>python models/train_model.py</code> to train the model.
+</div>
+{% endif %}
+
+<!-- Stat cards -->
+<div class="stats-grid">
+  <div class="stat-card info">
+    <div class="stat-label">Total Analyzed</div>
+    <div class="stat-value">{{ analytics.total_analyzed or 0 }}</div>
+    <div class="stat-sub">all time predictions</div>
+    <div class="stat-icon">🔮</div>
+  </div>
+  <div class="stat-card positive">
+    <div class="stat-label">Positive</div>
+    <div class="stat-value" style="color:var(--positive)">{{ analytics.counts.Positive or 0 }}</div>
+    <div class="stat-sub">
+      {% if analytics.total_analyzed %}
+        {{ "%.1f"|format(analytics.counts.Positive / analytics.total_analyzed * 100) }}%
+      {% else %}0%{% endif %}
+    </div>
+    <div class="stat-icon">😊</div>
+  </div>
+  <div class="stat-card negative">
+    <div class="stat-label">Negative</div>
+    <div class="stat-value" style="color:var(--negative)">{{ analytics.counts.Negative or 0 }}</div>
+    <div class="stat-sub">
+      {% if analytics.total_analyzed %}
+        {{ "%.1f"|format(analytics.counts.Negative / analytics.total_analyzed * 100) }}%
+      {% else %}0%{% endif %}
+    </div>
+    <div class="stat-icon">😞</div>
+  </div>
+  <div class="stat-card neutral">
+    <div class="stat-label">Neutral</div>
+    <div class="stat-value" style="color:var(--neutral)">{{ analytics.counts.Neutral or 0 }}</div>
+    <div class="stat-sub">
+      {% if analytics.total_analyzed %}
+        {{ "%.1f"|format(analytics.counts.Neutral / analytics.total_analyzed * 100) }}%
+      {% else %}0%{% endif %}
+    </div>
+    <div class="stat-icon">😐</div>
+  </div>
+</div>
+
+<!-- Model performance quick metrics -->
+{% if metrics and metrics.accuracy %}
+<div class="card mb-3">
+  <div class="card-title"><span>🏆</span> Model Performance — Best Model</div>
+  <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr));">
+    <div class="metric-tile">
+      <div class="val">{{ "%.1f"|format(metrics.accuracy * 100) }}%</div>
+      <div class="lbl">Accuracy</div>
+    </div>
+    <div class="metric-tile">
+      <div class="val">{{ "%.1f"|format(metrics.macro_f1 * 100) }}%</div>
+      <div class="lbl">Macro F1</div>
+    </div>
+    <div class="metric-tile">
+      <div class="val" style="color:var(--positive)">
+        {{ "%.1f"|format(metrics.per_class.Positive.f1 * 100) }}%
+      </div>
+      <div class="lbl">Positive F1</div>
+    </div>
+    <div class="metric-tile">
+      <div class="val" style="color:var(--neutral)">
+        {{ "%.1f"|format(metrics.per_class.Neutral.f1 * 100) }}%
+      </div>
+      <div class="lbl">Neutral F1</div>
+    </div>
+    <div class="metric-tile">
+      <div class="val" style="color:var(--negative)">
+        {{ "%.1f"|format(metrics.per_class.Negative.f1 * 100) }}%
+      </div>
+      <div class="lbl">Negative F1</div>
+    </div>
+  </div>
+  <div style="margin-top:12px;font-size:0.82rem;color:var(--text-muted);">
+    Model: <strong style="color:var(--accent-light)">{{ metrics.model_name or 'SentimentIQ' }}</strong>
+    &nbsp;·&nbsp; Training samples: <strong>{{ metrics.n_train or '—' }}</strong>
+    &nbsp;·&nbsp; Test samples: <strong>{{ metrics.n_test or '—' }}</strong>
+  </div>
+</div>
+{% endif %}
+
+<!-- Quick actions + Recent predictions -->
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title"><span>⚡</span> Quick Actions</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <a href="/analyze" class="btn btn-primary"><span>🔍</span> Analyze Text</a>
+      <a href="/batch"   class="btn btn-outline" ><span>📂</span> Batch CSV Analysis</a>
+      <a href="/performance" class="btn btn-outline"><span>🏆</span> View Model Performance</a>
+      <a href="/comparison"  class="btn btn-outline"><span>⚖️</span> Compare Models</a>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span>🕐</span> Recent Predictions</div>
+    {% if analytics.recent %}
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Text</th><th>Sentiment</th><th>Confidence</th></tr></thead>
+          <tbody>
+            {% for item in analytics.recent[:8] %}
+            <tr>
+              <td style="max-width:220px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="{{ item.text }}">{{ item.text[:70] }}</td>
+              <td><span class="badge badge-{{ item.sentiment.lower() }}">{{ item.sentiment }}</span></td>
+              <td class="font-mono">{{ "%.1f"|format(item.confidence * 100) }}%</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <div class="empty-state">
+        <div class="icon">🔮</div>
+        No predictions yet. Try the Sentiment Analyzer!
+      </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

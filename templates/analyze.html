@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+{% block title %}Sentiment Analyzer{% endblock %}
+{% block header_title %}🔍 Sentiment Analyzer{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Sentiment Analyzer</h1>
+  <p>Enter any text to analyze its emotional tone — Positive, Negative, or Neutral</p>
+</div>
+
+{% if not model_ready %}
+<div class="alert alert-warning">⚠️ No trained model found. Run <code>python models/train_model.py</code> first.</div>
+{% endif %}
+
+<div class="grid-2" style="align-items:start;">
+
+  <!-- Input panel -->
+  <div class="card">
+    <div class="card-title"><span>✍️</span> Enter Text</div>
+    <form id="analyzeForm">
+      <div class="form-group">
+        <label class="form-label" for="textInput">
+          Text to Analyze
+          <span id="charCount" style="float:right;color:var(--text-muted);font-weight:400;">0 chars</span>
+        </label>
+        <textarea
+          class="form-control"
+          id="textInput"
+          name="text"
+          rows="7"
+          placeholder="Type or paste your text here…&#10;&#10;Examples:&#10;• This movie was absolutely fantastic!&#10;• The service was okay, nothing special.&#10;• I am not happy with this product at all."
+          {% if not model_ready %}disabled{% endif %}
+        ></textarea>
+      </div>
+
+      <!-- Example quick-fill buttons -->
+      <div style="margin-bottom:14px;">
+        <div class="form-label">Try an example:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;">
+          <button type="button" class="btn btn-outline btn-sm" onclick="fillExample(this)"
+            data-text="This movie was absolutely fantastic! A must-watch masterpiece.">😊 Positive</button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="fillExample(this)"
+            data-text="Terrible experience. I am not happy with this at all.">😞 Negative</button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="fillExample(this)"
+            data-text="It was okay, nothing special. The service was average.">😐 Neutral</button>
+          <button type="button" class="btn btn-outline btn-sm" onclick="fillExample(this)"
+            data-text="The product is good but the delivery was extremely slow and disappointing.">🤔 Mixed</button>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;">
+        <button type="submit" class="btn btn-primary flex-1" {% if not model_ready %}disabled{% endif %}>
+          🔍 Analyze Sentiment
+        </button>
+        <button type="button" class="btn btn-outline" id="clearBtn">🗑️ Clear</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Result panel -->
+  <div>
+    <div id="resultSection">
+      <div class="card" style="text-align:center;padding:48px;">
+        <div style="font-size:3rem;margin-bottom:12px;">🧠</div>
+        <div style="color:var(--text-secondary);">Your analysis result will appear here.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Tips -->
+<div class="card mt-3">
+  <div class="card-title"><span>💡</span> Tips for Best Results</div>
+  <div class="grid-3">
+    <div>
+      <strong style="color:var(--positive)">✅ Works well with:</strong>
+      <ul style="color:var(--text-secondary);font-size:0.875rem;margin-top:8px;padding-left:18px;line-height:1.9;">
+        <li>Product reviews</li>
+        <li>Movie / book reviews</li>
+        <li>Customer feedback</li>
+        <li>Social media posts</li>
+      </ul>
+    </div>
+    <div>
+      <strong style="color:var(--neutral)">⚠️ Limitations:</strong>
+      <ul style="color:var(--text-secondary);font-size:0.875rem;margin-top:8px;padding-left:18px;line-height:1.9;">
+        <li>Sarcasm may be misclassified</li>
+        <li>Very short texts (1–2 words)</li>
+        <li>Domain-specific jargon</li>
+        <li>Non-English text</li>
+      </ul>
+    </div>
+    <div>
+      <strong style="color:var(--accent-light)">📊 Classes:</strong>
+      <ul style="color:var(--text-secondary);font-size:0.875rem;margin-top:8px;padding-left:18px;line-height:1.9;">
+        <li><span style="color:var(--positive)">●</span> Positive — praise, happiness</li>
+        <li><span style="color:var(--negative)">●</span> Negative — criticism, anger</li>
+        <li><span style="color:var(--neutral)">●</span> Neutral — factual, mixed, lukewarm</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function fillExample(btn) {
+  document.getElementById('textInput').value = btn.dataset.text;
+  document.getElementById('charCount').textContent = btn.dataset.text.length + ' chars';
+}
+</script>
+{% endblock %}

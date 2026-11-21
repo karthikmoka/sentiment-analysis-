@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}Batch Analysis{% endblock %}
+{% block header_title %}📂 Batch CSV Analysis{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Batch CSV Analysis</h1>
+  <p>Upload a CSV file and analyze sentiment for every row automatically</p>
+</div>
+
+{% if not model_ready %}
+<div class="alert alert-warning">⚠️ No trained model found. Run <code>python models/train_model.py</code> first.</div>
+{% endif %}
+
+<div class="card mb-3">
+  <div class="card-title"><span>📤</span> Upload CSV File</div>
+  <form id="batchForm">
+    <div class="upload-zone" id="uploadZone">
+      <div class="upload-zone-icon">📁</div>
+      <p><strong>Click to browse</strong> or drag & drop your CSV here</p>
+      <p style="font-size:0.8rem;margin-top:4px;color:var(--text-muted);">Max {{ config.MAX_UPLOAD_MB if config else 10 }} MB · CSV format only</p>
+      <input type="file" id="csvFile" name="file" accept=".csv" required/>
+    </div>
+
+    <div class="grid-2 mt-2" style="align-items:end;">
+      <div class="form-group" style="margin-bottom:0;">
+        <label class="form-label" for="textColumn">Text Column</label>
+        <select class="form-control" id="textColumn" name="text_column">
+          <option value="text">text</option>
+        </select>
+        <small style="color:var(--text-muted);font-size:0.78rem;">Auto-detected from CSV headers</small>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-primary w-100" id="uploadBtn" {% if not model_ready %}disabled{% endif %}>
+          🚀 Run Batch Analysis
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Expected format info -->
+<div class="card mb-3">
+  <div class="card-title"><span>📋</span> Expected CSV Format</div>
+  <div class="grid-2">
+    <div>
+      <div class="form-label">Minimum Required</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>text</th></tr></thead>
+          <tbody>
+            <tr><td>This movie was fantastic!</td></tr>
+            <tr><td>The service was terrible.</td></tr>
+            <tr><td>It was okay, nothing special.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <div class="form-label">Output Columns Added</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Column</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td class="font-mono">predicted_sentiment</td><td>Positive / Negative / Neutral</td></tr>
+            <tr><td class="font-mono">confidence</td><td>0.0 – 1.0</td></tr>
+            <tr><td class="font-mono">confidence_level</td><td>High / Moderate / Low</td></tr>
+            <tr><td class="font-mono">positive_probability</td><td>Positive class prob</td></tr>
+            <tr><td class="font-mono">negative_probability</td><td>Negative class prob</td></tr>
+            <tr><td class="font-mono">neutral_probability</td><td>Neutral class prob</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Results area -->
+<div id="batchResult"></div>
+{% endblock %}

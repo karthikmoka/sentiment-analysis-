@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}SentimentIQ{% endblock %} – AI Sentiment Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ── Sidebar ──────────────────────────────────────────────────────────── -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-icon">🧠</div>
+    <div>
+      <div class="logo-title">SentimentIQ</div>
+      <div class="logo-sub">AI · NLP · Intelligence</div>
+    </div>
+  </div>
+
+  <div class="nav-section-label">MAIN</div>
+  <a href="{{ url_for('index') }}"      class="nav-item {% if request.endpoint=='index' %}active{% endif %}">
+    <span class="nav-icon">📊</span> Dashboard
+  </a>
+  <a href="{{ url_for('analyze') }}"    class="nav-item {% if request.endpoint=='analyze' %}active{% endif %}">
+    <span class="nav-icon">🔍</span> Sentiment Analyzer
+  </a>
+  <a href="{{ url_for('batch') }}"      class="nav-item {% if request.endpoint=='batch' %}active{% endif %}">
+    <span class="nav-icon">📂</span> Batch Analysis
+  </a>
+
+  <div class="nav-section-label">MODELS</div>
+  <a href="{{ url_for('performance') }}"class="nav-item {% if request.endpoint=='performance' %}active{% endif %}">
+    <span class="nav-icon">🏆</span> Performance
+  </a>
+  <a href="{{ url_for('comparison') }}" class="nav-item {% if request.endpoint=='comparison' %}active{% endif %}">
+    <span class="nav-icon">⚖️</span> Model Comparison
+  </a>
+
+  <div class="nav-section-label">INSIGHTS</div>
+  <a href="{{ url_for('analytics_page') }}" class="nav-item {% if request.endpoint=='analytics_page' %}active{% endif %}">
+    <span class="nav-icon">📈</span> Analytics
+  </a>
+  <a href="{{ url_for('about') }}"      class="nav-item {% if request.endpoint=='about' %}active{% endif %}">
+    <span class="nav-icon">ℹ️</span> About
+  </a>
+
+  <div class="sidebar-footer">
+    <div class="status-dot {% if model_ready is defined and model_ready %}dot-green{% else %}dot-red{% endif %}"></div>
+    <span>{% if model_ready is defined and model_ready %}Model Ready{% else %}No Model{% endif %}</span>
+  </div>
+</nav>
+
+<!-- ── Main content ──────────────────────────────────────────────────────── -->
+<div class="main-wrapper">
+  <header class="topbar">
+    <button class="menu-btn" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
+    <div class="topbar-title">{% block header_title %}SentimentIQ{% endblock %}</div>
+    <div class="topbar-actions">
+      <span class="badge-version">v2.0</span>
+      <a href="/api/health" target="_blank" class="topbar-link" title="Health check">⚡</a>
+    </div>
+  </header>
+
+  <main class="page-content">
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for cat, msg in messages %}
+          <div class="alert alert-{{ cat }}">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="page-footer">
+    SentimentIQ v2.0 &nbsp;·&nbsp; SST-5 (3-class) &nbsp;·&nbsp; scikit-learn + Flask &nbsp;·&nbsp;
+    <a href="/about">About</a>
+  </footer>
+</div>
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

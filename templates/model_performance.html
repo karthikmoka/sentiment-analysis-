@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+{% block title %}Model Performance{% endblock %}
+{% block header_title %}🏆 Model Performance{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Model Performance</h1>
+  <p>Detailed evaluation metrics of the production SentimentIQ model on the held-out test set</p>
+</div>
+
+{% if not metrics or not metrics.accuracy %}
+<div class="alert alert-warning">
+  ⚠️ No evaluation results found. Run <code>python models/train_model.py</code> to train and evaluate.
+</div>
+{% else %}
+
+<!-- Top metrics -->
+<div class="stats-grid mb-3">
+  <div class="stat-card info">
+    <div class="stat-label">Accuracy</div>
+    <div class="stat-value">{{ "%.1f"|format(metrics.accuracy * 100) }}%</div>
+    <div class="stat-sub">test set</div>
+    <div class="stat-icon">🎯</div>
+  </div>
+  <div class="stat-card info">
+    <div class="stat-label">Macro F1</div>
+    <div class="stat-value">{{ "%.1f"|format(metrics.macro_f1 * 100) }}%</div>
+    <div class="stat-sub">all classes avg</div>
+    <div class="stat-icon">📊</div>
+  </div>
+  <div class="stat-card positive">
+    <div class="stat-label">Positive F1</div>
+    <div class="stat-value" style="color:var(--positive)">{{ "%.1f"|format(metrics.per_class.Positive.f1 * 100) }}%</div>
+    <div class="stat-icon">😊</div>
+  </div>
+  <div class="stat-card neutral">
+    <div class="stat-label">Neutral F1</div>
+    <div class="stat-value" style="color:var(--neutral)">{{ "%.1f"|format(metrics.per_class.Neutral.f1 * 100) }}%</div>
+    <div class="stat-icon">😐</div>
+  </div>
+  <div class="stat-card negative">
+    <div class="stat-label">Negative F1</div>
+    <div class="stat-value" style="color:var(--negative)">{{ "%.1f"|format(metrics.per_class.Negative.f1 * 100) }}%</div>
+    <div class="stat-icon">😞</div>
+  </div>
+</div>
+
+<div class="grid-2 mb-3">
+  <!-- Per-class metrics table -->
+  <div class="card">
+    <div class="card-title"><span>📋</span> Per-Class Metrics</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Class</th><th>Precision</th><th>Recall</th><th>F1-Score</th></tr>
+        </thead>
+        <tbody>
+          {% for cls in ['Negative','Neutral','Positive'] %}
+          {% set m = metrics.per_class[cls] %}
+          <tr>
+            <td><span class="badge badge-{{ cls.lower() }}">{{ cls }}</span></td>
+            <td class="font-mono">{{ "%.3f"|format(m.precision) }}</td>
+            <td class="font-mono">{{ "%.3f"|format(m.recall) }}</td>
+            <td class="font-mono"><strong>{{ "%.3f"|format(m.f1) }}</strong></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- CV scores -->
+    {% if metrics.cv_mean_f1 %}
+    <hr class="divider"/>
+    <div class="form-label">5-Fold Cross-Validation (Training Set)</div>
+    <div class="d-flex gap-2 mt-1">
+      <div class="metric-tile flex-1">
+        <div class="val">{{ "%.3f"|format(metrics.cv_mean_f1) }}</div>
+        <div class="lbl">CV Mean F1</div>
+      </div>
+      <div class="metric-tile flex-1">
+        <div class="val">{{ "%.3f"|format(metrics.cv_std_f1) }}</div>
+        <div class="lbl">CV Std Dev</div>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Training info -->
+    <hr class="divider"/>
+    <div class="form-label">Training Info</div>
+    <div style="font-size:0.85rem;color:var(--text-secondary);line-height:2;">
+      <div>Model: <strong style="color:var(--accent-light)">{{ metrics.model_name or '—' }}</strong></div>
+      <div>Train samples: <strong>{{ metrics.n_train or '—' }}</strong></div>
+      <div>Test samples: <strong>{{ metrics.n_test or '—' }}</strong></div>
+      {% if metrics.train_time_sec %}
+      <div>Train time: <strong>{{ metrics.train_time_sec }}s</strong></div>
+      {% endif %}
+      {% if metrics.inference_ms_per_sample %}
+      <div>Inference: <strong>{{ metrics.inference_ms_per_sample }}ms/sample</strong></div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="card">
+    <div class="card-title"><span>📊</span> F1 by Class</div>
+    <canvas id="f1Chart" height="180"></canvas>
+    <hr class="divider"/>
+    <div class="card-title"><span>🥧</span> Precision vs Recall</div>
+    <canvas id="prChart" height="180"></canvas>
+  </div>
+</div>
+
+<!-- Confusion Matrix -->
+{% if metrics.confusion_matrix %}
+<div class="card mb-3">
+  <div class="card-title"><span>🔢</span> Confusion Matrix</div>
+  <p style="color:var(--text-muted);font-size:0.83rem;margin-bottom:16px;">Rows = Actual · Columns = Predicted</p>
+  <div style="display:flex;justify-content:center;">
+    <table style="border-collapse:separate;border-spacing:4px;font-family:'JetBrains Mono',monospace;">
+      <thead>
+        <tr>
+          <th></th>
+          {% for cls in ['Negative','Neutral','Positive'] %}
+          <th style="text-align:center;padding:8px 16px;color:var(--text-muted);font-size:0.78rem;">Pred.<br/>{{ cls[:3] }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in metrics.confusion_matrix %}
+        {% set i = loop.index0 %}
+        <tr>
+          <th style="text-align:right;padding:8px 16px;color:var(--text-muted);font-size:0.78rem;">
+            Act. {{ ['Neg','Neu','Pos'][i] }}
+          </th>
+          {% for val in row %}
+          {% set j = loop.index0 %}
+          <td style="
+            text-align:center;
+            padding:14px 20px;
+            border-radius:8px;
+            font-weight:700;
+            font-size:1rem;
+            {% if i==j %}
+              background:rgba(99,102,241,0.25);color:var(--accent-light);
+            {% else %}
+              background:var(--bg-surface);color:var(--text-secondary);
+            {% endif %}
+          ">{{ val }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endif %}
+
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+{% if metrics and metrics.per_class %}
+const pc = {{ metrics.per_class | tojson }};
+// F1 chart
+new Chart(document.getElementById('f1Chart'), {
+  type: 'bar',
+  data: {
+    labels: ['Negative','Neutral','Positive'],
+    datasets: [{
+      label: 'F1-Score',
+      data: [pc.Negative.f1, pc.Neutral.f1, pc.Positive.f1],
+      backgroundColor: ['#ef4444','#f59e0b','#22c55e'],
+      borderRadius: 6,
+    }]
+  },
+  options: { indexAxis:'y', plugins:{legend:{display:false}},
+    scales:{ x:{ beginAtZero:true, max:1, ticks:{ callback: v => (v*100).toFixed(0)+'%' }}} }
+});
+// Precision-Recall radar
+new Chart(document.getElementById('prChart'), {
+  type: 'radar',
+  data: {
+    labels: ['Neg P','Neg R','Neu P','Neu R','Pos P','Pos R'],
+    datasets: [{
+      label: 'Score',
+      data: [pc.Negative.precision, pc.Negative.recall,
+             pc.Neutral.precision,  pc.Neutral.recall,
+             pc.Positive.precision, pc.Positive.recall],
+      borderColor: '#6366f1',
+      backgroundColor: 'rgba(99,102,241,0.15)',
+      pointBackgroundColor: '#6366f1',
+    }]
+  },
+  options: { scales:{ r:{ beginAtZero:true, max:1, ticks:{stepSize:0.2} }},
+    plugins:{ legend:{display:false} } }
+});
+{% endif %}
+</script>
+{% endblock %}

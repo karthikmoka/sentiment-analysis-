@@ -1,0 +1,187 @@
+{% extends "base.html" %}
+{% block title %}Model Comparison{% endblock %}
+{% block header_title %}⚖️ Model Comparison{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Model Comparison</h1>
+  <p>Side-by-side comparison of all trained models on the held-out test set</p>
+</div>
+
+{% if not experiments %}
+<div class="alert alert-info">
+  ℹ️ No experiment results found. Run <code>python models/train_model.py</code> to train all models.
+</div>
+{% else %}
+
+<!-- Summary table -->
+<div class="card mb-3">
+  <div class="card-title"><span>📊</span> All Experiment Results</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>Accuracy</th>
+          <th>Macro F1</th>
+          <th>Neg F1</th>
+          <th>Neu F1</th>
+          <th>Pos F1</th>
+          <th>CV F1</th>
+          <th>Train (s)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% set best_macro = experiments | map(attribute='macro_f1') | max %}
+        {% for exp in experiments | sort(attribute='macro_f1', reverse=True) %}
+        <tr {% if exp.macro_f1 == best_macro %}style="background:var(--accent-glow);"{% endif %}>
+          <td>
+            <strong>{{ exp.model_name }}</strong>
+            {% if exp.macro_f1 == best_macro %}
+              <span class="badge badge-info" style="margin-left:6px;">BEST</span>
+            {% endif %}
+          </td>
+          <td class="font-mono">{{ "%.3f"|format(exp.accuracy) }}</td>
+          <td class="font-mono"><strong>{{ "%.3f"|format(exp.macro_f1) }}</strong></td>
+          <td class="font-mono" style="color:var(--negative)">{{ "%.3f"|format(exp.per_class.Negative.f1) }}</td>
+          <td class="font-mono" style="color:var(--neutral)">{{ "%.3f"|format(exp.per_class.Neutral.f1) }}</td>
+          <td class="font-mono" style="color:var(--positive)">{{ "%.3f"|format(exp.per_class.Positive.f1) }}</td>
+          <td class="font-mono">{% if exp.cv_mean_f1 %}{{ "%.3f"|format(exp.cv_mean_f1) }} ± {{ "%.3f"|format(exp.cv_std_f1) }}{% else %}—{% endif %}</td>
+          <td class="font-mono">{{ exp.train_time_sec }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Charts -->
+<div class="grid-2 mb-3">
+  <div class="card">
+    <div class="card-title"><span>📈</span> Macro F1 Comparison</div>
+    <canvas id="macroF1Chart" height="220"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-title"><span>🎯</span> Per-Class F1 Comparison</div>
+    <canvas id="classF1Chart" height="220"></canvas>
+  </div>
+</div>
+
+<div class="grid-2 mb-3">
+  <div class="card">
+    <div class="card-title"><span>⏱️</span> Training Time (seconds)</div>
+    <canvas id="trainTimeChart" height="200"></canvas>
+  </div>
+  <div class="card">
+    <div class="card-title"><span>🧪</span> Neutral Class Analysis</div>
+    <canvas id="neutralChart" height="200"></canvas>
+  </div>
+</div>
+
+<!-- Baseline vs Best comparison -->
+<div class="card">
+  <div class="card-title"><span>🆚</span> Baseline vs Best Model</div>
+  {% set sorted_exp = experiments | sort(attribute='macro_f1', reverse=True) %}
+  {% set best = sorted_exp[0] %}
+  {% set baseline = experiments | sort(attribute='train_time_sec') | first %}
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Metric</th><th>Baseline (LR)</th><th>Best Model</th><th>Improvement</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Accuracy</td>
+          <td class="font-mono">{{ "%.3f"|format(0.6036) }}</td>
+          <td class="font-mono"><strong>{{ "%.3f"|format(best.accuracy) }}</strong></td>
+          <td class="font-mono text-positive">+{{ "%.3f"|format(best.accuracy - 0.6036) }}</td>
+        </tr>
+        <tr>
+          <td>Macro F1</td>
+          <td class="font-mono">{{ "%.3f"|format(0.5370) }}</td>
+          <td class="font-mono"><strong>{{ "%.3f"|format(best.macro_f1) }}</strong></td>
+          <td class="font-mono text-positive">+{{ "%.3f"|format(best.macro_f1 - 0.5370) }}</td>
+        </tr>
+        <tr>
+          <td>Neutral F1</td>
+          <td class="font-mono">{{ "%.3f"|format(0.2373) }}</td>
+          <td class="font-mono"><strong>{{ "%.3f"|format(best.per_class.Neutral.f1) }}</strong></td>
+          <td class="font-mono text-positive">+{{ "%.3f"|format(best.per_class.Neutral.f1 - 0.2373) }}</td>
+        </tr>
+        <tr>
+          <td>Negative F1</td>
+          <td class="font-mono">{{ "%.3f"|format(0.6594) }}</td>
+          <td class="font-mono"><strong>{{ "%.3f"|format(best.per_class.Negative.f1) }}</strong></td>
+          <td class="font-mono">{{ "+%.3f"|format(best.per_class.Negative.f1 - 0.6594) if best.per_class.Negative.f1 > 0.6594 else "%.3f"|format(best.per_class.Negative.f1 - 0.6594) }}</td>
+        </tr>
+        <tr>
+          <td>Positive F1</td>
+          <td class="font-mono">{{ "%.3f"|format(0.7144) }}</td>
+          <td class="font-mono"><strong>{{ "%.3f"|format(best.per_class.Positive.f1) }}</strong></td>
+          <td class="font-mono">{{ "+%.3f"|format(best.per_class.Positive.f1 - 0.7144) if best.per_class.Positive.f1 > 0.7144 else "%.3f"|format(best.per_class.Positive.f1 - 0.7144) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+{% if experiments %}
+const experiments = {{ experiments | tojson }};
+const names   = experiments.map(e => e.model_name.replace(' (word 1-3g)','').replace(' (calibrated)',''));
+const macroF1 = experiments.map(e => e.macro_f1);
+const negF1   = experiments.map(e => e.per_class.Negative.f1);
+const neuF1   = experiments.map(e => e.per_class.Neutral.f1);
+const posF1   = experiments.map(e => e.per_class.Positive.f1);
+const times   = experiments.map(e => e.train_time_sec);
+
+// Macro F1
+new Chart(document.getElementById('macroF1Chart'), {
+  type:'bar',
+  data:{ labels:names, datasets:[{ label:'Macro F1', data:macroF1,
+    backgroundColor: macroF1.map(v => `rgba(99,102,241,${0.3 + v*0.7})`),
+    borderRadius:6 }] },
+  options:{ plugins:{legend:{display:false}},
+    scales:{ y:{ beginAtZero:true, max:1, ticks:{callback:v=>(v*100).toFixed(0)+'%'} }} }
+});
+
+// Per-class F1
+new Chart(document.getElementById('classF1Chart'), {
+  type:'bar',
+  data:{
+    labels:names,
+    datasets:[
+      { label:'Negative F1', data:negF1, backgroundColor:'#ef4444', borderRadius:4 },
+      { label:'Neutral F1',  data:neuF1, backgroundColor:'#f59e0b', borderRadius:4 },
+      { label:'Positive F1', data:posF1, backgroundColor:'#22c55e', borderRadius:4 },
+    ]
+  },
+  options:{ scales:{ y:{ beginAtZero:true, max:1 } } }
+});
+
+// Training time
+new Chart(document.getElementById('trainTimeChart'), {
+  type:'bar', indexAxis:'y',
+  data:{ labels:names, datasets:[{ label:'Train Time (s)', data:times,
+    backgroundColor:'rgba(99,102,241,0.6)', borderRadius:6 }] },
+  options:{ plugins:{legend:{display:false}} }
+});
+
+// Neutral analysis
+new Chart(document.getElementById('neutralChart'), {
+  type:'radar',
+  data:{
+    labels: names,
+    datasets:[
+      { label:'Neutral F1',        data:neuF1,                                  borderColor:'#f59e0b', backgroundColor:'rgba(245,158,11,0.1)', pointBackgroundColor:'#f59e0b' },
+      { label:'Neutral Precision', data:experiments.map(e=>e.per_class.Neutral.precision), borderColor:'#6366f1', backgroundColor:'rgba(99,102,241,0.1)', pointBackgroundColor:'#6366f1' },
+      { label:'Neutral Recall',    data:experiments.map(e=>e.per_class.Neutral.recall),    borderColor:'#38bdf8', backgroundColor:'rgba(56,189,248,0.1)', pointBackgroundColor:'#38bdf8' },
+    ]
+  },
+  options:{ scales:{ r:{ beginAtZero:true, max:1 } } }
+});
+{% endif %}
+</script>
+{% endblock %}

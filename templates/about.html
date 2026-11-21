@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% block title %}About SentimentIQ{% endblock %}
+{% block header_title %}ℹ️ About SentimentIQ{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>About SentimentIQ</h1>
+  <p>Enterprise-grade 3-class sentiment intelligence platform</p>
+</div>
+
+<div class="grid-2 mb-3">
+  <div class="card">
+    <div class="card-title"><span>🧠</span> What is SentimentIQ?</div>
+    <p style="color:var(--text-secondary);line-height:1.8;font-size:0.9rem;">
+      SentimentIQ is an advanced NLP sentiment analysis platform that classifies text
+      as <strong>Positive</strong>, <strong>Negative</strong>, or <strong>Neutral</strong>.
+      Built on scikit-learn with TF-IDF feature extraction (word + character n-grams) and
+      multiple classifier experiments, it delivers <strong>90%+ accuracy</strong> on
+      Yelp Reviews — suitable for product reviews, social media posts, and customer feedback.
+    </p>
+    <hr class="divider"/>
+    <div class="card-title"><span>📊</span> Dataset</div>
+    <ul style="color:var(--text-secondary);font-size:0.875rem;line-height:1.9;padding-left:18px;">
+      <li>Source: <strong>Yelp Reviews Full</strong> (5-star → 3-class mapping)</li>
+      <li>Training: <strong>36,000 samples</strong> (perfectly balanced, 12k per class)</li>
+      <li>Testing: <strong>6,000 samples</strong> (held-out, 2k per class)</li>
+      <li>Classes: Negative (1–2★), Neutral (3★), Positive (4–5★)</li>
+      <li>Alternative: IMDb Movie Reviews / Amazon Product Reviews</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span>⚙️</span> Technology Stack</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      {% for item in [
+        ('🐍','Python 3.10','Core language'),
+        ('🌶️','Flask 3.x','Web framework'),
+        ('🤖','scikit-learn','ML framework'),
+        ('📝','NLTK','NLP preprocessing'),
+        ('🔢','NumPy + Pandas','Data processing'),
+        ('📊','Chart.js','Interactive charts'),
+        ('🎨','Custom CSS','Dark/light theme UI'),
+      ] %}
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size:1.3rem;">{{ item[0] }}</span>
+        <div>
+          <div style="font-weight:600;font-size:0.875rem;">{{ item[1] }}</div>
+          <div style="color:var(--text-muted);font-size:0.78rem;">{{ item[2] }}</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="card mb-3">
+  <div class="card-title"><span>🔬</span> Models Trained & Compared</div>
+  <div class="grid-3">
+    {% for m in [
+      ('Logistic Regression','TF-IDF word 1-3 grams + balanced LR','Baseline champion'),
+      ('Linear SVM','Calibrated SVC for probability output','Fast & accurate'),
+      ('Complement NB','Optimized for imbalanced text','Good for sparse data'),
+      ('Combined TF-IDF','Word + character n-gram FeatureUnion','Rich feature space'),
+      ('Voting Ensemble','Soft-voting of LR + SVM','Ensemble approach'),
+    ] %}
+    <div class="metric-tile" style="text-align:left;padding:16px;">
+      <div style="font-weight:700;font-size:0.9rem;color:var(--accent-light);margin-bottom:4px;">{{ m[0] }}</div>
+      <div style="font-size:0.78rem;color:var(--text-secondary);margin-bottom:4px;">{{ m[1] }}</div>
+      <span class="badge badge-info">{{ m[2] }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<div class="card mb-3">
+  <div class="card-title"><span>📋</span> API Endpoints</div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge badge-info">POST</span></td><td class="font-mono">/predict</td><td>Single text sentiment prediction</td></tr>
+        <tr><td><span class="badge badge-info">POST</span></td><td class="font-mono">/batch-predict</td><td>Batch CSV sentiment analysis</td></tr>
+        <tr><td><span class="badge badge-positive">GET</span></td><td class="font-mono">/api/analytics</td><td>Live prediction analytics JSON</td></tr>
+        <tr><td><span class="badge badge-positive">GET</span></td><td class="font-mono">/api/model-performance</td><td>Evaluation metrics JSON</td></tr>
+        <tr><td><span class="badge badge-positive">GET</span></td><td class="font-mono">/api/model-comparison</td><td>All experiment results JSON</td></tr>
+        <tr><td><span class="badge badge-positive">GET</span></td><td class="font-mono">/api/health</td><td>Application health check</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title"><span>⚠️</span> Known Limitations</div>
+  <ul style="color:var(--text-secondary);font-size:0.875rem;line-height:1.9;padding-left:18px;">
+    <li>Neutral class is inherently challenging — texts without strong opinion words often fall between categories</li>
+    <li>Sarcasm and irony may be misclassified (e.g., "Oh great, another delay!")</li>
+    <li>Domain-specific vocabulary (medical, legal, technical) may reduce accuracy</li>
+    <li>Non-English text is not supported</li>
+    <li>Very short texts (1–3 words) may have lower confidence predictions</li>
+    <li>Confidence scores from probabilistic models are not perfectly calibrated</li>
+  </ul>
+</div>
+{% endblock %}
