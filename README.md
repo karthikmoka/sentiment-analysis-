@@ -110,6 +110,25 @@ Precision:       89.92%        83.54%        87.69%    Accuracy: 87.07%
 
 ---
 
+## 📊 Benchmark Dataset & Class Distribution
+
+The platform is evaluated on a meticulously balanced, high-signal multi-domain customer review benchmark:
+
+| Dataset File | Negative (0) | Neutral (1) | Positive (2) | Total Reviews | Purpose |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **[`dataset/raw/train.csv`](dataset/raw/train.csv)** | 15,000 | 15,000 | 15,000 | **45,000** | Balanced multi-class model training |
+| **[`dataset/raw/test.csv`](dataset/raw/test.csv)** | 2,500 | 2,500 | 2,500 | **7,500** | Strict held-out evaluation & verification |
+| **[`dataset/sample_reviews.csv`](dataset/sample_reviews.csv)** | 10 | 10 | 10 | **30** | Instant drag-and-drop batch web UI testing |
+| **Total Benchmark Corpus** | **17,500** | **17,500** | **17,500** | **52,500** | Fully documented in [`dataset/README.md`](dataset/README.md) |
+
+### 🏷️ Rating-to-Polarity Mapping
+- **1-Star Customer Reviews** $\rightarrow$ **Negative (0)**: Extreme dissatisfaction, defects, critical failures.
+- **3-Star Customer Reviews** $\rightarrow$ **Neutral (1)**: Impartial feedback, balanced pros and cons, factual descriptions.
+- **5-Star Customer Reviews** $\rightarrow$ **Positive (2)**: High satisfaction, enthusiastic praise, superior quality.
+- *Ambiguous 2-star and 4-star reviews are excluded to establish clean, distinct decision boundaries.*
+
+---
+
 ## 🏗️ System Architecture & Workflow
 
 ```mermaid

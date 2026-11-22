@@ -1,0 +1,31 @@
+id,text,expected_sentiment
+1,"The product quality is completely top-notch and impressive! Highly recommended.",Positive
+2,"Terrible customer service and the device broke down after just three days of use.",Negative
+3,"The package arrived on time. The phone functions as described in the user manual.",Neutral
+4,"Absolutely phenomenal display clarity and lightning-fast processing speeds!",Positive
+5,"Worst purchase I have ever made. Completely wasted my hard-earned money.",Negative
+6,"It is an average laptop. Not bad for basic office work, but gaming performance is mediocre.",Neutral
+7,"The hotel staff went above and beyond to make our stay comfortable and memorable.",Positive
+8,"The food was cold, delivery was two hours late, and items were missing from the order.",Negative
+9,"The meeting started at 10 AM and concluded at 11:30 AM as scheduled.",Neutral
+10,"Outstanding battery life that easily lasts over two full days on a single charge.",Positive
+11,"Do not buy this product! The build quality is cheap plastic and the buttons stick.",Negative
+12,"The shoes fit as expected. Normal comfort level for daily walking.",Neutral
+13,"Exceeded all my expectations! Crisp audio quality and seamless Bluetooth pairing.",Positive
+14,"Defective unit right out of the box. Screen flickers and touch does not respond.",Negative
+15,"The color matches the catalog picture. Standard cotton fabric without special features.",Neutral
+16,"Super fast shipping, beautiful packaging, and excellent build quality overall.",Positive
+17,"Extremely disappointed with the software updates which caused lag and crashes.",Negative
+18,"The item arrived in a brown cardboard box with standard protective bubble wrap.",Neutral
+19,"I truly love the design and the user-friendly interface. A 5-star product!",Positive
+20,"Horrible experience. Returning this item immediately and requesting a full refund.",Negative
+21,"The car drives fine in city traffic. Fuel economy is within the expected range.",Neutral
+22,"Brilliant camera capabilities, vivid colors, and exceptional low-light photography.",Positive
+23,"Awful battery drainage and excessive overheating even during simple web browsing.",Negative
+24,"The delivery driver left the parcel on the front porch as instructed.",Neutral
+25,"Five stars! Reliable performance, sleek aesthetics, and tremendous value for money.",Positive
+26,"The zipper tore on the first day. Very poor stitching and flimsy material.",Negative
+27,"The temperature setting ranges from 100 to 240 degrees as stated in specifications.",Neutral
+28,"Superb sound isolation and punchy bass notes. The best headphones in this price bracket.",Positive
+29,"Unresponsive support team and they refused to honor the warranty policy.",Negative
+30,"The textbook arrived without missing pages or highlighting marks. Standard print edition.",Neutral

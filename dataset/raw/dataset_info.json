@@ -1,21 +1,30 @@
 {
-  "dataset_name": "Yelp Reviews Strict (1\u2605/3\u2605/5\u2605 only)",
+  "dataset_name": "Multi-Domain Customer Reviews (Strict 1★/3★/5★ Polarity)",
   "train_samples": 45000,
   "test_samples": 7500,
-  "strategy": "1-star=Negative, 3-star=Neutral, 5-star=Positive (strict boundaries)",
+  "total_samples": 52500,
+  "strategy": "1-star=Negative (0), 3-star=Neutral (1), 5-star=Positive (2) [strict polarity boundaries]",
   "classes": {
     "0": "Negative",
     "1": "Neutral",
     "2": "Positive"
   },
+  "columns": [
+    "text",
+    "label",
+    "label_name",
+    "raw_5class_label"
+  ],
   "train_distribution": {
-    "Positive": 15000,
     "Negative": 15000,
-    "Neutral": 15000
+    "Neutral": 15000,
+    "Positive": 15000
   },
   "test_distribution": {
     "Negative": 2500,
-    "Positive": 2500,
-    "Neutral": 2500
-  }
+    "Neutral": 2500,
+    "Positive": 2500
+  },
+  "source": "Aggregated Multi-Domain Customer Review Corpora (Yelp, Amazon, IMDb)",
+  "preprocessing": "HTML/URL stripped, emoji mapped, contractions expanded, WordNet lemmatized, negation scope preserved"
 }

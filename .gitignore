@@ -13,15 +13,14 @@ venv/
 env/
 .env
 
-# Models (large files)
-models/sentiment_model.pkl
+# Large temporary models or checkpoints
 models/distilbert_sst3/
+models/distilbert_yelp_finetuned/
 
-# Dataset (large files)
-dataset/raw/train.csv
-dataset/raw/test.csv
-dataset/raw/train_sst3_backup.csv
-dataset/raw/test_sst3_backup.csv
+# Dataset backups & raw downloads
+dataset/raw/*_backup.csv
+dataset/raw/*.zip
+dataset/raw/*.tar.gz
 
 # Upload/results
 uploads/
