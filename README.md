@@ -24,7 +24,7 @@ Built with a **250,000-dimensional Dual-Stream FeatureUnion (Word + Character n-
 | **Public Live Application** | [https://0f4291761905be.app.lhr.life](https://0f4291761905be.app.lhr.life) | 🟢 **Active / Online** |
 | **Localhost Development** | `http://127.0.0.1:5000` | 🟢 **Active** |
 | **Official 40-Page Report** | [docs/Sentiment_Analysis_Project_Report.pdf](docs/Sentiment_Analysis_Project_Report.pdf) | 📄 **Included in Repo** |
-| **GitHub Repository** | [https://github.com/karthikmoka/SentimentIQ-Flask](https://github.com/karthikmoka/SentimentIQ-Flask) | 🚀 **Main Branch** |
+| **GitHub Repository** | [https://github.com/karthikmoka/sentiment-analysis-](https://github.com/karthikmoka/sentiment-analysis-) | 🚀 **Main Branch** |
 | **API Health Check** | `GET https://0f4291761905be.app.lhr.life/api/health` | 🟢 **HTTP 200 OK** |
 | **Single-Review Prediction API** | `POST https://0f4291761905be.app.lhr.life/predict` | 🟢 **JSON Endpoint** |
 
@@ -174,7 +174,7 @@ flowchart TD
 ## 📁 Repository Directory Structure
 
 ```
-SentimentIQ-Flask/
+sentiment-analysis/
 ├── app.py                         # Production Flask application & route controller
 ├── requirements.txt               # Pinned dependencies (Flask, scikit-learn, NLTK, etc.)
 ├── Procfile                       # Production web server process entry (gunicorn)
@@ -254,8 +254,8 @@ SentimentIQ-Flask/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/karthikmoka/SentimentIQ-Flask.git
-cd SentimentIQ-Flask
+git clone https://github.com/karthikmoka/sentiment-analysis-.git
+cd sentiment-analysis-
 ```
 
 ### 2. Create and Activate a Virtual Environment
