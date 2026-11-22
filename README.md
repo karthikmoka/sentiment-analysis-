@@ -5,6 +5,15 @@
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-1.x-orange)](https://scikit-learn.org)
 [![Accuracy](https://img.shields.io/badge/Accuracy-87.1%25-brightgreen)](/)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Online-success)](https://a81c3835272058.app.lhr.life)
+
+## 🌐 Live Access Links
+
+- **Public Live URL (Anyone can access now):** [https://a81c3835272058.app.lhr.life](https://a81c3835272058.app.lhr.life)
+- **Localhost Development URL:** [http://127.0.0.1:5000](http://127.0.0.1:5000)
+- **GitHub Repository:** [https://github.com/karthikmoka/SentimentIQ-Flask](https://github.com/karthikmoka/SentimentIQ-Flask)
+
+---
 
 ## 🎯 Overview
 
