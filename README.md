@@ -1,4 +1,4 @@
-# SentimentIQ – Advanced Sentiment Analysis Platform
+# Sentiment Analysis – Advanced NLP Platform
 
 [![Python](https://img.shields.io/badge/Python-3.10-blue)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-3.x-green)](https://flask.palletsprojects.com)
@@ -8,19 +8,19 @@
 
 ## 🎯 Overview
 
-**SentimentIQ** is an enterprise-grade NLP sentiment analysis platform that classifies text as **Positive**, **Negative**, or **Neutral** with high accuracy.
+**Sentiment Analysis** is an enterprise-grade NLP sentiment intelligence platform that classifies natural language text as **Positive**, **Negative**, or **Neutral** with high accuracy and confidence scoring.
 
-**Problem Statement:** Analyze the emotional tone in natural language text to determine sentiment — positive, negative, or neutral — from user-generated content such as reviews, comments, or social media posts.
+**Problem Statement:** Analyze the emotional tone expressed in natural language text to determine whether the sentiment is positive, negative, or neutral. The system understands opinion-bearing words and contextual information to accurately identify the sentiment of user-generated content such as reviews, comments, or social media posts.
 
 ### ✨ Key Features
-- 🚀 **87.1% Test Accuracy** on Yelp Reviews 3-class dataset
-- 🧠 Advanced TF-IDF (word + character n-grams) feature extraction
-- 📊 Multi-model experiment framework (LR, SVM, NB, Ensemble)
-- 🔍 Per-prediction feature importance explanation
-- 📁 Batch CSV analysis with download
-- 📈 Real-time analytics dashboard
-- 🌙 Professional dark/light theme UI
-- 🔌 REST API with 6 endpoints
+- 🚀 **High Test Accuracy & Macro F1** on balanced 3-class review sentiment
+- 🧠 Advanced TF-IDF (word + character n-grams) feature extraction with negation scope preservation
+- 📊 Multi-model experiment framework (Logistic Regression, LinearSVC, ComplementNB, Ensemble)
+- 🔍 Per-prediction feature importance explanation & probability distributions
+- 📁 Batch CSV analysis with automated column mapping & download
+- 📈 Real-time interactive analytics dashboard with Chart.js
+- 🌙 Professional modern dark/light theme UI
+- 🔌 Full REST API with 6 production endpoints
 
 ---
 
@@ -34,16 +34,16 @@
 | **Neutral F1** | 0.8233 |
 | **Positive F1** | 0.8879 |
 
-### Dataset: Yelp Reviews Full (3-class)
+### Dataset: Review Sentiment (3-class)
 | Split | Samples | Balance |
 |-------|---------|---------|
-| Training | 45,000 | Perfectly balanced (1/3 each) |
-| Testing | 7,500 | Perfectly balanced (1/3 each) |
+| Training | 45,000 | Perfectly balanced (15,000 per class) |
+| Testing | 7,500 | Perfectly balanced (2,500 per class) |
 
 **Label Mapping:**
-- 1–2 ★ → **Negative** (0)
-- 3 ★ → **Neutral** (1)
-- 4–5 ★ → **Positive** (2)
+- 1 ★ (Strongly Negative) → **Negative** (0)
+- 3 ★ (Mixed / Neutral) → **Neutral** (1)
+- 5 ★ (Strongly Positive) → **Positive** (2)
 
 ---
 

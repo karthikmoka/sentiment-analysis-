@@ -1,31 +1,31 @@
 {% extends "base.html" %}
-{% block title %}About SentimentIQ{% endblock %}
-{% block header_title %}ℹ️ About SentimentIQ{% endblock %}
+{% block title %}About Sentiment Analysis{% endblock %}
+{% block header_title %}ℹ️ About Sentiment Analysis{% endblock %}
 
 {% block content %}
 <div class="page-header">
-  <h1>About SentimentIQ</h1>
+  <h1>About Sentiment Analysis</h1>
   <p>Enterprise-grade 3-class sentiment intelligence platform</p>
 </div>
 
 <div class="grid-2 mb-3">
   <div class="card">
-    <div class="card-title"><span>🧠</span> What is SentimentIQ?</div>
+    <div class="card-title"><span>🧠</span> What is Sentiment Analysis?</div>
     <p style="color:var(--text-secondary);line-height:1.8;font-size:0.9rem;">
-      SentimentIQ is an advanced NLP sentiment analysis platform that classifies text
+      Sentiment Analysis is an advanced NLP sentiment intelligence platform that classifies natural language text
       as <strong>Positive</strong>, <strong>Negative</strong>, or <strong>Neutral</strong>.
-      Built on scikit-learn with TF-IDF feature extraction (word + character n-grams) and
-      multiple classifier experiments, it delivers <strong>90%+ accuracy</strong> on
-      Yelp Reviews — suitable for product reviews, social media posts, and customer feedback.
+      Built with state-of-the-art NLP pipelines, robust feature extraction, and
+      multiple model architectures, it delivers high-confidence predictions on
+      reviews, comments, and social media posts.
     </p>
     <hr class="divider"/>
     <div class="card-title"><span>📊</span> Dataset</div>
     <ul style="color:var(--text-secondary);font-size:0.875rem;line-height:1.9;padding-left:18px;">
-      <li>Source: <strong>Yelp Reviews Full</strong> (5-star → 3-class mapping)</li>
-      <li>Training: <strong>36,000 samples</strong> (perfectly balanced, 12k per class)</li>
-      <li>Testing: <strong>6,000 samples</strong> (held-out, 2k per class)</li>
-      <li>Classes: Negative (1–2★), Neutral (3★), Positive (4–5★)</li>
-      <li>Alternative: IMDb Movie Reviews / Amazon Product Reviews</li>
+      <li>Source: <strong>Yelp Reviews Full / Amazon Reviews</strong> (5-star → 3-class mapping)</li>
+      <li>Training: <strong>45,000 samples</strong> (perfectly balanced, 15k per class)</li>
+      <li>Testing: <strong>7,500 samples</strong> (held-out, 2.5k per class)</li>
+      <li>Classes: Negative (1★), Neutral (3★), Positive (5★)</li>
+      <li>Supported Domains: Movie Reviews (IMDb), Product Reviews (Amazon), Business Reviews (Yelp)</li>
     </ul>
   </div>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>{% block title %}SentimentIQ{% endblock %} – AI Sentiment Intelligence</title>
+  <title>{% block title %}Sentiment Analysis{% endblock %} – NLP Intelligence Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
@@ -16,8 +16,8 @@
   <div class="sidebar-header">
     <div class="logo-icon">🧠</div>
     <div>
-      <div class="logo-title">SentimentIQ</div>
-      <div class="logo-sub">AI · NLP · Intelligence</div>
+      <div class="logo-title">Sentiment Analysis</div>
+      <div class="logo-sub">NLP Intelligence Platform</div>
     </div>
   </div>
 
@@ -58,7 +58,7 @@
 <div class="main-wrapper">
   <header class="topbar">
     <button class="menu-btn" onclick="document.getElementById('sidebar').classList.toggle('open')" aria-label="Menu">☰</button>
-    <div class="topbar-title">{% block header_title %}SentimentIQ{% endblock %}</div>
+    <div class="topbar-title">{% block header_title %}Sentiment Analysis{% endblock %}</div>
     <div class="topbar-actions">
       <span class="badge-version">v2.0</span>
       <a href="/api/health" target="_blank" class="topbar-link" title="Health check">⚡</a>
@@ -79,7 +79,7 @@
   </main>
 
   <footer class="page-footer">
-    SentimentIQ v2.0 &nbsp;·&nbsp; SST-5 (3-class) &nbsp;·&nbsp; scikit-learn + Flask &nbsp;·&nbsp;
+    Sentiment Analysis Platform &nbsp;·&nbsp; 3-Class Sentiment Intelligence &nbsp;·&nbsp; Flask + NLP &nbsp;·&nbsp;
     <a href="/about">About</a>
   </footer>
 </div>
