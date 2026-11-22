@@ -150,6 +150,10 @@ Open `http://127.0.0.1:5000` in your browser.
 
 ---
 
+## Live Demo
+
+🚀 **[https://sentiment-analysis-r73q.onrender.com](https://sentiment-analysis-r73q.onrender.com)**
+
 ## Repository
 
 [https://github.com/karthikmoka/sentiment-analysis-](https://github.com/karthikmoka/sentiment-analysis-)
