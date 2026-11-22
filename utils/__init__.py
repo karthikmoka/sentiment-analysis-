@@ -1,1 +1,1 @@
-"""SentimentIQ utils package."""
+"""Sentiment Analysis utils package."""

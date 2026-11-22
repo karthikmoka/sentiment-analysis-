@@ -1,5 +1,5 @@
 """
-SentimentIQ – High-Accuracy Training Script
+Sentiment Analysis – High-Accuracy Training Script
 ============================================
 Designed for Yelp/Amazon 3-class dataset.
 Expected accuracy: 92–95%
@@ -39,7 +39,7 @@ from sklearn.preprocessing import LabelEncoder
 LABEL_NAMES = {0: "Negative", 1: "Neutral", 2: "Positive"}
 
 print("=" * 60)
-print("SentimentIQ – High-Accuracy Training")
+print("Sentiment Analysis – High-Accuracy Training")
 print("=" * 60)
 
 # ── Load data ─────────────────────────────────────────────────

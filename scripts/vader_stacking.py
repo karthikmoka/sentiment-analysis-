@@ -1,5 +1,5 @@
 """
-SentimentIQ – VADER + TF-IDF Feature Stacking for 90%+
+Sentiment Analysis – VADER + TF-IDF Feature Stacking for 90%+
 ========================================================
 Strategy: Stack handcrafted VADER sentiment features ON TOP of TF-IDF.
 VADER gives orthogonal signal (lexicon-based) that TF-IDF doesn't capture.
@@ -54,7 +54,7 @@ except Exception as e:
     sia = SentimentIntensityAnalyzer()
 
 print("=" * 60)
-print("SentimentIQ – VADER + TF-IDF Stacking for 90%+")
+print("Sentiment Analysis – VADER + TF-IDF Stacking for 90%+")
 print("=" * 60)
 
 train_df = pd.read_csv("dataset/raw/train.csv").dropna(subset=["text","label"]).reset_index(drop=True)

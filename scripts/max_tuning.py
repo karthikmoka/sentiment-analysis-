@@ -1,5 +1,5 @@
 """
-SentimentIQ – Maximum Traditional ML Grid Search
+Sentiment Analysis – Maximum Traditional ML Grid Search
 Runs exhaustive parameter search to find the best possible accuracy.
 """
 import sys, os

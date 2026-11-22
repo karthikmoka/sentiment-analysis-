@@ -1,5 +1,5 @@
 """
-SentimentIQ – Advanced Text Preprocessing Pipeline v2.0
+Sentiment Analysis – Advanced Text Preprocessing Pipeline v2.0
 
 Steps (order matters):
   1.  None / type guard

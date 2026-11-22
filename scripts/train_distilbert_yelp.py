@@ -1,5 +1,5 @@
 """
-SentimentIQ – DistilBERT on Strict 1★/3★/5★ Yelp Dataset
+Sentiment Analysis – DistilBERT on Strict 1★/3★/5★ Yelp Dataset
 ==========================================================
 Expected accuracy: 92–95% (transformer on clean 3-class data)
 
@@ -38,7 +38,7 @@ SAVE_PATH   = os.path.join(_ROOT, "models", "distilbert_sst3")
 LABEL_NAMES = {0:"Negative", 1:"Neutral", 2:"Positive"}
 
 print("=" * 60)
-print("SentimentIQ – DistilBERT Fine-Tuning")
+print("Sentiment Analysis – DistilBERT Fine-Tuning")
 print(f"Device: {DEVICE} | Base: {SST2_MODEL}")
 print("=" * 60)
 

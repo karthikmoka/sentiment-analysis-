@@ -1,5 +1,5 @@
 """
-SentimentIQ – Post-Training Finalize + GitHub Push
+Sentiment Analysis – Post-Training Finalize + GitHub Push
 ===================================================
 Run after train_high_accuracy.py completes.
 Steps:
@@ -13,7 +13,7 @@ _ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(_ROOT)
 
 print("=" * 60)
-print("SentimentIQ – Post-Training Finalize & GitHub Push")
+print("Sentiment Analysis – Post-Training Finalize & GitHub Push")
 print("=" * 60)
 
 # ── 1. Read final metrics ──────────────────────────────────────
@@ -37,7 +37,7 @@ print(f"   Neu F1   : {neu_f1:.4f}")
 print(f"   Pos F1   : {pos_f1:.4f}")
 
 # ── 2. Update README ───────────────────────────────────────────
-readme = f"""# SentimentIQ – Advanced Sentiment Analysis Platform
+readme = f"""# Sentiment Analysis – Advanced Sentiment Analysis Platform
 
 [![Python](https://img.shields.io/badge/Python-3.10-blue)](https://python.org)
 [![Flask](https://img.shields.io/badge/Flask-3.x-green)](https://flask.palletsprojects.com)
@@ -47,7 +47,7 @@ readme = f"""# SentimentIQ – Advanced Sentiment Analysis Platform
 
 ## 🎯 Overview
 
-**SentimentIQ** is an enterprise-grade NLP sentiment analysis platform that classifies text as **Positive**, **Negative**, or **Neutral** with high accuracy.
+**Sentiment Analysis** is an enterprise-grade NLP sentiment analysis platform that classifies text as **Positive**, **Negative**, or **Neutral** with high accuracy.
 
 **Problem Statement:** Analyze the emotional tone in natural language text to determine sentiment — positive, negative, or neutral — from user-generated content such as reviews, comments, or social media posts.
 
@@ -110,7 +110,7 @@ Python 3.10+
 ### Installation
 ```bash
 git clone https://github.com/karthikmoka/SentimentIQ-Flask.git
-cd SentimentIQ-Flask
+cd Sentiment Analysis-Flask
 
 pip install -r requirements.txt
 ```
@@ -184,7 +184,7 @@ python -m pytest tests/test_app.py -v
 
 ## 📂 Project Structure
 ```
-SentimentIQ-Flask/
+Sentiment Analysis-Flask/
 ├── app.py                      # Flask application
 ├── requirements.txt            # Dependencies
 ├── config/config.py            # Configuration

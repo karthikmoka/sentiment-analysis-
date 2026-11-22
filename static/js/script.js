@@ -1,5 +1,5 @@
 /* ============================================================
-   SentimentIQ v2.0 – Main JavaScript
+   Sentiment Analysis v2.0 – Main JavaScript
    ============================================================ */
 
 'use strict';

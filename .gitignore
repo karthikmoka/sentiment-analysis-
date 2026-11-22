@@ -27,6 +27,7 @@ dataset/raw/test_sst3_backup.csv
 uploads/
 results/
 *.log
+PUBLIC_URL.txt
 
 # IDE
 .vscode/
@@ -40,3 +41,6 @@ Thumbs.db
 
 # HuggingFace cache
 .cache/
+
+# Binary tools
+cloudflared.exe

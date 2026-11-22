@@ -1,5 +1,5 @@
 """
-SentimentIQ – Comprehensive Test Suite v2.0
+Sentiment Analysis – Comprehensive Test Suite v2.0
 Tests preprocessing, model loading, predictions, API endpoints, batch analysis.
 """
 

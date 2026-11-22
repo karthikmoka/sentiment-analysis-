@@ -1,5 +1,5 @@
 """
-SentimentIQ Flask – Main Application v2.0
+Sentiment Analysis Flask – Main Application v2.0
 Run: python app.py  →  http://127.0.0.1:5000
 """
 
@@ -271,5 +271,5 @@ def server_error(e):
 if __name__ == "__main__":
     if not _model_ready():
         log.warning("No model found. Run: python models/train_model.py")
-    log.info("Starting SentimentIQ → http://127.0.0.1:5000")
+    log.info("Starting Sentiment Analysis → http://127.0.0.1:5000")
     app.run(host="127.0.0.1", port=5000, debug=True)

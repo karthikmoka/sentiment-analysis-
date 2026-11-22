@@ -1,5 +1,5 @@
 """
-SentimentIQ – Smart Prediction Module v2.1
+Sentiment Analysis – Smart Prediction Module v2.1
 Auto-detects model type: DistilBERT (transformers) or sklearn Pipeline.
 Falls back to sklearn if no transformer model is found.
 """

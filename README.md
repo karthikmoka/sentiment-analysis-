@@ -71,7 +71,7 @@ Python 3.10+
 ### Installation
 ```bash
 git clone https://github.com/karthikmoka/SentimentIQ-Flask.git
-cd SentimentIQ-Flask
+cd Sentiment Analysis-Flask
 
 pip install -r requirements.txt
 ```
@@ -145,7 +145,7 @@ python -m pytest tests/test_app.py -v
 
 ## 📂 Project Structure
 ```
-SentimentIQ-Flask/
+Sentiment Analysis-Flask/
 ├── app.py                      # Flask application
 ├── requirements.txt            # Dependencies
 ├── config/config.py            # Configuration

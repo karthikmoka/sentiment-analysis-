@@ -1,1 +1,1 @@
-"""SentimentIQ Flask config package."""
+"""Sentiment Analysis Flask config package."""

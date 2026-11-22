@@ -1,5 +1,5 @@
 """
-SentimentIQ – 90%+ Training on Strict 1★/3★/5★ Yelp Dataset
+Sentiment Analysis – 90%+ Training on Strict 1★/3★/5★ Yelp Dataset
 =============================================================
 With strict star-rating boundaries, TF-IDF + LR easily achieves 90%+.
 Key optimizations:
@@ -27,7 +27,7 @@ from sklearn.metrics import (accuracy_score, f1_score, classification_report,
 LABEL_NAMES = {0:"Negative", 1:"Neutral", 2:"Positive"}
 
 print("=" * 60)
-print("SentimentIQ – 90%+ Training (Strict Dataset)")
+print("Sentiment Analysis – 90%+ Training (Strict Dataset)")
 print("=" * 60)
 
 train_df = pd.read_csv("dataset/raw/train.csv").dropna(subset=["text","label"]).reset_index(drop=True)

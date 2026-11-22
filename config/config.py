@@ -1,5 +1,5 @@
 """
-SentimentIQ – Configuration v2.0
+Sentiment Analysis – Configuration v2.0
 """
 import os
 
@@ -40,5 +40,5 @@ MAX_UPLOAD_MB      = 10
 ALLOWED_EXTENSIONS = {"csv"}
 
 # ── Flask ────────────────────────────────────────────────────────────────────
-SECRET_KEY = os.environ.get("SENTIMENTIQ_SECRET", "sentimentiq-secret-2024")
+SECRET_KEY = os.environ.get("SENTIMENT_ANALYSIS_SECRET", "sentiment-analysis-secret-key")
 DEBUG      = os.environ.get("FLASK_DEBUG", "false").lower() == "true"

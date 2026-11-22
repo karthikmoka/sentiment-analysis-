@@ -1,5 +1,5 @@
 """
-SentimentIQ Flask — In-session Analytics
+Sentiment Analysis Flask — In-session Analytics
 """
 import os, sys, json, logging, threading
 from datetime import datetime

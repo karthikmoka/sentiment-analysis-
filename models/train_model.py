@@ -1,5 +1,5 @@
 """
-SentimentIQ – Advanced Multi-Model Experiment Framework v2.0
+Sentiment Analysis – Advanced Multi-Model Experiment Framework v2.0
 
 Trains and evaluates:
   1. Logistic Regression (word + char n-grams, tuned)

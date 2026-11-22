@@ -1,1 +1,1 @@
-"""SentimentIQ models package."""
+"""Sentiment Analysis models package."""

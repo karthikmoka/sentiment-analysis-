@@ -1,5 +1,5 @@
 """
-SentimentIQ – Evaluation utilities v2.0
+Sentiment Analysis – Evaluation utilities v2.0
 Loads evaluation results JSON and formats metrics for templates.
 """
 
@@ -55,6 +55,6 @@ def format_metrics(raw: dict) -> dict:
         "n_test":            raw.get("n_test"),
         "train_time_sec":    raw.get("train_time_sec") or raw.get("training_time_sec"),
         "inference_ms_per_sample": raw.get("inference_ms_per_sample"),
-        "model_name":        raw.get("model_name", "SentimentIQ"),
+        "model_name":        raw.get("model_name", "Sentiment Analysis"),
         "timestamp":         raw.get("timestamp", ""),
     }

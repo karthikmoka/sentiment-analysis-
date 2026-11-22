@@ -1,5 +1,5 @@
 """
-SentimentIQ – Amazon Reviews Dataset Builder
+Sentiment Analysis – Amazon Reviews Dataset Builder
 ==============================================
 Downloads Amazon Product Reviews (Polarity) from HuggingFace datasets.
 Maps to 3 classes:
@@ -42,7 +42,7 @@ for f in [TRAIN_FILE, TEST_FILE]:
             print(f"Backed up: {backup}")
 
 print("=" * 60)
-print("SentimentIQ – Amazon Reviews 3-Class Dataset Builder")
+print("Sentiment Analysis – Amazon Reviews 3-Class Dataset Builder")
 print("=" * 60)
 
 # ── Strategy: Use Yelp Reviews Full (1–5 stars) ───────────────

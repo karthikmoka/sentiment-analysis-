@@ -1,6 +1,6 @@
 {
   "model_name": "Combined TF-IDF + LR",
-  "model_file": "C:\\Users\\mokak\\.gemini\\antigravity\\scratch\\SentimentIQ\\SentimentIQ-Flask-main\\models\\sentiment_model.pkl",
+  "model_file": "C:\\Users\\mokak\\.gemini\\antigravity\\scratch\\Sentiment Analysis\\Sentiment Analysis-Flask-main\\models\\sentiment_model.pkl",
   "trained_at": "2026-11-21T09:29:15.631048",
   "n_train": 8544,
   "n_test": 2210,

@@ -1,3 +1,3 @@
 """
-SentimentIQ Flask — __init__ files
+Sentiment Analysis Flask — __init__ files
 """

@@ -1,5 +1,5 @@
 """
-SentimentIQ – Smart DistilBERT 3-Class Adapter
+Sentiment Analysis – Smart DistilBERT 3-Class Adapter
 Strategy: Use distilbert-base-uncased-finetuned-sst-2-english 
 (already trained on SST-2 binary sentiment) and add a smart 
 3-class calibration layer trained on our SST-3 dataset.

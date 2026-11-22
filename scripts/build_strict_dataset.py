@@ -1,5 +1,5 @@
 """
-SentimentIQ – Strict 3-class Yelp Dataset (1★/3★/5★ only)
+Sentiment Analysis – Strict 3-class Yelp Dataset (1★/3★/5★ only)
 ===========================================================
 Key insight: 1★ reviews are VERY negative, 5★ are VERY positive,
 3★ are genuinely mixed/neutral. This creates extremely separable
@@ -19,7 +19,7 @@ SAVE_DIR = "dataset/raw"
 os.makedirs(SAVE_DIR, exist_ok=True)
 
 print("=" * 60)
-print("SentimentIQ – Strict 1★/3★/5★ Dataset Builder")
+print("Sentiment Analysis – Strict 1★/3★/5★ Dataset Builder")
 print("Expected accuracy: 90–95% with TF-IDF + LR")
 print("=" * 60)
 

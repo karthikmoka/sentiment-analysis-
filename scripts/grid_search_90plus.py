@@ -1,5 +1,5 @@
 """
-SentimentIQ – Grid Search for 90%+ Accuracy
+Sentiment Analysis – Grid Search for 90%+ Accuracy
 ============================================
 Focused hyperparameter sweep on LinearSVC and LR,
 targeting 90%+ on strict 1★/3★/5★ Yelp dataset.
@@ -27,7 +27,7 @@ from sklearn.metrics import (accuracy_score, f1_score, classification_report,
     confusion_matrix, precision_recall_fscore_support)
 
 print("=" * 60)
-print("SentimentIQ – Grid Search for 90%+")
+print("Sentiment Analysis – Grid Search for 90%+")
 print("=" * 60)
 
 train_df = pd.read_csv("dataset/raw/train.csv").dropna(subset=["text","label"]).reset_index(drop=True)
