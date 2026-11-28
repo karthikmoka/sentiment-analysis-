@@ -1,0 +1,61 @@
+id,category,text,expected_sentiment
+1,Electronics,"The battery life on this laptop easily lasts over 12 hours on a single charge. Outstanding performance!",Positive
+2,Electronics,"The phone screen cracked on the second day from a tiny bump. Extremely fragile and cheap build quality.",Negative
+3,Electronics,"The device measures 15 cm by 8 cm and includes a standard USB Type-C charging cable in the package.",Neutral
+4,Electronics,"Crystal-clear sound quality with deep, punchy bass. Best noise-cancelling headphones I've ever owned.",Positive
+5,Electronics,"Constantly overheats and freezes whenever I open more than two tabs. Completely unusable.",Negative
+6,Electronics,"The charger supports 65W fast charging and operates between 100V and 240V AC.",Neutral
+7,Electronics,"Super fast wireless connectivity and the camera captures stunning photos even in low light.",Positive
+8,Electronics,"The bluetooth connection drops every five minutes. Very frustrating and unreliable product.",Negative
+9,Electronics,"The smartwatch came with a black silicone wristband and an English instruction manual.",Neutral
+10,Electronics,"Setup was effortless and it synced seamlessly with all my smart home devices. Highly recommended!",Positive
+11,Food & Dining,"The pasta was rich, creamy, and cooked to absolute perfection. One of the best meals I've had in years!",Positive
+12,Food & Dining,"Disgusting food. The chicken was completely raw in the middle and smelled spoiled. Never ordering again.",Negative
+13,Food & Dining,"The cafe opens at 8:00 AM and offers both indoor and patio seating options.",Neutral
+14,Food & Dining,"Incredible wood-fired pizza with authentic Italian flavor! The garlic dip is also to die for.",Positive
+15,Food & Dining,"Order was 90 minutes late, completely ice cold, and the restaurant forgot two main entrees.",Negative
+16,Food & Dining,"The restaurant serves lunch specials from Monday through Thursday between 12 PM and 3 PM.",Neutral
+17,Food & Dining,"The dessert platter was an absolute masterpiece! Delightful presentation and heavenly taste.",Positive
+18,Food & Dining,"Rude and unprofessional waiters. We waited 45 minutes just to receive glasses of water.",Negative
+19,Food & Dining,"The combo meal includes a sandwich, a bag of potato chips, and a medium fountain beverage.",Neutral
+20,Food & Dining,"Warm hospitality, vibrant ambiance, and mouth-watering dishes. Will definitely be returning soon!",Positive
+21,Travel & Hotel,"The ocean view from our balcony was breathtaking and the room was spotlessly clean every day.",Positive
+22,Travel & Hotel,"Filthy room with stained bedsheets and cockroaches in the bathroom. Absolute nightmare experience.",Negative
+23,Travel & Hotel,"Check-in begins at 3:00 PM and express checkout is available at the front desk until 11:00 AM.",Neutral
+24,Travel & Hotel,"Staff went above and beyond to make our anniversary stay unforgettable. Five-star service throughout!",Positive
+25,Travel & Hotel,"Air conditioning did not work during a 40-degree heatwave and reception refused to change our room.",Negative
+26,Travel & Hotel,"The hotel offers complimentary high-speed Wi-Fi and valet parking for registered guests.",Neutral
+27,Travel & Hotel,"Peaceful resort surrounded by lush greenery. The infinity pool and breakfast buffet were top tier.",Positive
+28,Travel & Hotel,"Overpriced and noisy. Construction noise started right outside our window at 6:00 AM sharp.",Negative
+29,Travel & Hotel,"The property is located approximately 15 kilometers from the international airport.",Neutral
+30,Travel & Hotel,"Exceptional spa treatments and cozy rooms. Left feeling completely rejuvenated and relaxed.",Positive
+31,Software & Apps,"This app has boosted my team's productivity tenfold. Intuitive UI and rock-solid stability!",Positive
+32,Software & Apps,"The latest update broke everything. Crashes immediately upon opening and lost all my saved files.",Negative
+33,Software & Apps,"The software requires 4GB of available RAM and is compatible with Windows 10 and Windows 11.",Neutral
+34,Software & Apps,"Clean code structure, comprehensive API documentation, and lightning-quick response times.",Positive
+35,Software & Apps,"Full of aggressive pop-up advertisements and requires a monthly subscription for basic features.",Negative
+36,Software & Apps,"Version 2.4.0 includes scheduled bug fixes and regular security vulnerability patches.",Neutral
+37,Software & Apps,"Smooth animations, dark mode support, and cloud backup work like a charm. 10/10 experience!",Positive
+38,Software & Apps,"Horrible user interface. Finding basic account settings is like solving an impossible maze.",Negative
+39,Software & Apps,"The exported data files are generated in standard CSV and JSON file formats.",Neutral
+40,Software & Apps,"Remarkable customer dashboard with real-time analytics and customizable reporting widgets.",Positive
+41,Retail & Apparel,"The jacket fits like a custom tailor made it. Premium genuine leather and very warm.",Positive
+42,Retail & Apparel,"Cheap flimsy material. The zipper broke off on the very first day of wearing it.",Negative
+43,Retail & Apparel,"The shirt is composed of 60% cotton and 40% polyester and is machine washable.",Neutral
+44,Retail & Apparel,"Super soft cotton fabric and vibrant colors that did not fade at all after washing.",Positive
+45,Retail & Apparel,"Wrong size, wrong color, and the package arrived torn and soaked in water.",Negative
+46,Retail & Apparel,"The footwear is available in standard US unisex shoe sizes from 6 to 13.",Neutral
+47,Retail & Apparel,"Looks even better in person than in the photos! Got so many compliments today.",Positive
+48,Retail & Apparel,"Threads unraveling after just one wash cycle. Very poor quality control.",Negative
+49,Retail & Apparel,"The item weighs approximately 450 grams and comes packaged in clear polyethylene plastic.",Neutral
+50,Retail & Apparel,"Extremely comfortable memory foam soles. Walking all day without any foot fatigue.",Positive
+51,Customer Support,"Support agent Sarah solved my billing dispute in under 3 minutes with great courtesy.",Positive
+52,Customer Support,"Customer support is totally useless. Kept transferring me between automated bots for an hour.",Negative
+53,Customer Support,"Customer support can be contacted via email or live chat 24 hours a day, 7 days a week.",Neutral
+54,Customer Support,"Prompt replacement sent without any hassle when my original parcel was lost by the courier.",Positive
+55,Customer Support,"They refused to honor the 30-day money-back guarantee and ignored all my follow-up emails.",Negative
+56,Customer Support,"Ticket number #48921 was opened at 14:22 UTC and assigned to Tier-1 technical assistance.",Neutral
+57,Customer Support,"Phenomenal service! The technician stayed on the call until my issue was completely resolved.",Positive
+58,Customer Support,"Misleading marketing claims and hidden fees that were never disclosed during checkout.",Negative
+59,Customer Support,"The warranty documentation is enclosed in the envelope attached to the shipping box.",Neutral
+60,Customer Support,"A trustworthy company with genuine care for customer satisfaction. Will definitely buy again!",Positive
